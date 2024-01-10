@@ -83,8 +83,8 @@ int main() {
             auto outputs = mlp.forward(inputs[i]).second;
             mlp.train(inputs[i], targets[i]);
 
-            // Compute loss
-            epoch_loss += mlp.mse_loss(outputs, targets[i]);
+            // Compute cross-entropy loss
+            epoch_loss += mlp.cross_entropy_loss(outputs, targets[i]);
 
             // Accuracy calculation
             int predictedClass = std::distance(outputs.begin(), std::max_element(outputs.begin(), outputs.end()));

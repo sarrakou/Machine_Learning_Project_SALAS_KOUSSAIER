@@ -19,6 +19,7 @@ C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecogn
           [
               _Ty=float
           ]
+C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\MLPAlgo.h(144,27): warning C4305: 'initialisation' : troncation de 'double' à 'float'
   main.cpp
 C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\MLPAlgo.h(55,33): warning C4244: '=' : conversion de 'double' en '_Ty', perte possible de données
           with
@@ -40,6 +41,7 @@ C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecogn
           [
               _Ty=float
           ]
+C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\MLPAlgo.h(144,27): warning C4305: 'initialisation' : troncation de 'double' à 'float'
 C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\main.cpp(20,29): warning C4267: 'argument' : conversion de 'size_t' en 'int', perte possible de données
 C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\main.cpp(69,25): warning C4305: 'initialisation' : troncation de 'double' à 'float'
 C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\main.cpp(90,32): warning C4244: 'initialisation' : conversion de '__int64' en 'int', perte possible de données
@@ -47,8 +49,8 @@ C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecogn
 C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\main.cpp(121,28): warning C4244: 'initialisation' : conversion de '__int64' en 'int', perte possible de données
 C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\main.cpp(124,25): warning C4244: 'initialisation' : conversion de '__int64' en 'int', perte possible de données
   Génération de code en cours
-  17 of 674 functions ( 2.5%) were compiled, the rest were copied from previous compilation.
-    1 functions were new in current compilation
-    12 functions had inline decision re-evaluated but remain unchanged
+  3 of 675 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
+    2 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
   Fin de la génération du code
   HandwrittenLetterRecognition.vcxproj -> C:\Users\sarra\source\repos\HandwrittenLetterRecognition\x64\Release\HandwrittenLetterRecognition.exe

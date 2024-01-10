@@ -136,6 +136,17 @@ public:
         }
     }
 
+    // Cross-Entropy Loss Function
+    float cross_entropy_loss(const std::vector<float>& outputs, const std::vector<float>& targets) {
+        float loss = 0.0f;
+        for (size_t i = 0; i < outputs.size(); i++) {
+            // To avoid log(0) which is undefined, add a small value epsilon
+            float epsilon = 1e-6;
+            loss -= targets[i] * log(outputs[i] + epsilon);
+        }
+        return loss;
+    }
+
     // Mean Squared Error Loss
     float mse_loss(const std::vector<float>& outputs, const std::vector<float>& targets) {
         float loss = 0.0f;
