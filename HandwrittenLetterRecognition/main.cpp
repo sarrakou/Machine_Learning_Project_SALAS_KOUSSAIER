@@ -75,18 +75,33 @@ int main() {
 
     // Training loop
     for (int epoch = 0; epoch < epochs; ++epoch) {
-        float epoch_loss = 0.0;
+        float epoch_loss = 0.0f;
+        int correctPredictions = 0;
 
         for (size_t i = 0; i < inputs.size(); ++i) {
-            // Train the network with each input and target pair
+            // Forward pass and training
+            auto outputs = mlp.forward(inputs[i]).second;
             mlp.train(inputs[i], targets[i]);
 
-            // Optionally calculate and accumulate loss here (requires implementation)
+            // Compute loss
+            epoch_loss += mlp.mse_loss(outputs, targets[i]);
+
+            // Accuracy calculation
+            int predictedClass = std::distance(outputs.begin(), std::max_element(outputs.begin(), outputs.end()));
+            int actualClass = std::distance(targets[i].begin(), std::max_element(targets[i].begin(), targets[i].end()));
+            if (predictedClass == actualClass) {
+                correctPredictions++;
+            }
         }
 
-        std::cout << "Epoch " << (epoch + 1) << " completed." << std::endl;
-        // Optionally output average loss per epoch here
-    }
+        // Calculate average loss for the epoch
+        epoch_loss /= inputs.size();
+
+        // Calculate accuracy for the epoch
+        float accuracy = static_cast<float>(correctPredictions) / static_cast<float>(inputs.size());
+
+        std::cout << "Epoch " << (epoch + 1) << " - Loss: " << epoch_loss << ", Accuracy: " << accuracy * 100.0f << "%" << std::endl;
+     }
 
     std::cout << "Training completed." << std::endl; 
 
