@@ -1,41 +1,41 @@
 ﻿  MLPAlgo.cpp
-C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\MLPAlgo.h(38,33): warning C4244: '=' : conversion de 'double' en '_Ty', perte possible de données
+C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\MLPAlgo.h(55,33): warning C4244: '=' : conversion de 'double' en '_Ty', perte possible de données
           with
           [
               _Ty=float
           ]
-C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\MLPAlgo.h(40,43): warning C4244: '=' : conversion de 'double' en '_Ty', perte possible de données
+C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\MLPAlgo.h(57,43): warning C4244: '=' : conversion de 'double' en '_Ty', perte possible de données
           with
           [
               _Ty=float
           ]
-C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\MLPAlgo.h(45,33): warning C4244: '=' : conversion de 'double' en '_Ty', perte possible de données
+C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\MLPAlgo.h(62,33): warning C4244: '=' : conversion de 'double' en '_Ty', perte possible de données
           with
           [
               _Ty=float
           ]
-C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\MLPAlgo.h(47,43): warning C4244: '=' : conversion de 'double' en '_Ty', perte possible de données
+C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\MLPAlgo.h(64,43): warning C4244: '=' : conversion de 'double' en '_Ty', perte possible de données
           with
           [
               _Ty=float
           ]
   main.cpp
-C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\MLPAlgo.h(38,33): warning C4244: '=' : conversion de 'double' en '_Ty', perte possible de données
+C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\MLPAlgo.h(55,33): warning C4244: '=' : conversion de 'double' en '_Ty', perte possible de données
           with
           [
               _Ty=float
           ]
-C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\MLPAlgo.h(40,43): warning C4244: '=' : conversion de 'double' en '_Ty', perte possible de données
+C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\MLPAlgo.h(57,43): warning C4244: '=' : conversion de 'double' en '_Ty', perte possible de données
           with
           [
               _Ty=float
           ]
-C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\MLPAlgo.h(45,33): warning C4244: '=' : conversion de 'double' en '_Ty', perte possible de données
+C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\MLPAlgo.h(62,33): warning C4244: '=' : conversion de 'double' en '_Ty', perte possible de données
           with
           [
               _Ty=float
           ]
-C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\MLPAlgo.h(47,43): warning C4244: '=' : conversion de 'double' en '_Ty', perte possible de données
+C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\MLPAlgo.h(64,43): warning C4244: '=' : conversion de 'double' en '_Ty', perte possible de données
           with
           [
               _Ty=float
@@ -47,8 +47,8 @@ C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecogn
 C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\main.cpp(121,28): warning C4244: 'initialisation' : conversion de '__int64' en 'int', perte possible de données
 C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\main.cpp(124,25): warning C4244: 'initialisation' : conversion de '__int64' en 'int', perte possible de données
   Génération de code en cours
-  3 of 673 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
-    2 functions were new in current compilation
-    11 functions had inline decision re-evaluated but remain unchanged
+  17 of 674 functions ( 2.5%) were compiled, the rest were copied from previous compilation.
+    1 functions were new in current compilation
+    12 functions had inline decision re-evaluated but remain unchanged
   Fin de la génération du code
   HandwrittenLetterRecognition.vcxproj -> C:\Users\sarra\source\repos\HandwrittenLetterRecognition\x64\Release\HandwrittenLetterRecognition.exe

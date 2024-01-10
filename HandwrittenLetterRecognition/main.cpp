@@ -41,7 +41,7 @@ void loadData(std::vector<std::vector<float>>& inputs, std::vector<std::vector<f
 void loadTestData(std::vector<std::vector<float>>& testInputs, std::vector<std::vector<float>>& testTargets) {
     // Implement loading of your test data similar to how you did with the training data
     // Assuming test images are organized in directories named 'a', 'j', 'c'
-    std::string baseDir = "C:/Users/sarra/source/repos/HandwrittenLetterRecognition/TrainingDataset"; // Update with the path to your test images
+    std::string baseDir = "C:/Users/sarra/source/repos/HandwrittenLetterRecognition/TestingDataset"; // Update with the path to your test images
     std::vector<std::vector<float>> labels = { {1, 0, 0}, {0, 1, 0}, {0, 0, 1} }; // One-hot encoding for 'a', 'j', 'c'
     std::vector<std::string> folders = { "a", "j", "c" };
 

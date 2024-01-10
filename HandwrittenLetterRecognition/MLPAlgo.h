@@ -23,6 +23,23 @@ private:
         return x * (1.0f - x);
     }
 
+    // Softmax Activation Function
+    std::vector<float> softmax(const std::vector<float>& logits) {
+        std::vector<float> exp_logits(logits.size());
+        float sum_exp_logits = 0.0f;
+
+        for (size_t i = 0; i < logits.size(); i++) {
+            exp_logits[i] = exp(logits[i]);
+            sum_exp_logits += exp_logits[i];
+        }
+
+        for (size_t i = 0; i < logits.size(); i++) {
+            exp_logits[i] /= sum_exp_logits;
+        }
+
+        return exp_logits;
+    }
+
     // Initialize weights and biases with random values
     void initialize() {
         std::random_device rd;
@@ -67,17 +84,19 @@ public:
             hidden_activations[i] = sigmoid(hidden_activations[i]);
         }
 
-        // Calculate output layer activations
-        std::vector<float> outputs(output_nodes, 0.0f);
+        // Calculate output layer logits
+        std::vector<float> logits(output_nodes, 0.0f);
         for (int i = 0; i < output_nodes; ++i) {
             for (int j = 0; j < hidden_nodes; ++j) {
-                outputs[i] += hidden_activations[j] * weights_output[i][j];
+                logits[i] += hidden_activations[j] * weights_output[i][j];
             }
-            outputs[i] += bias_output[i];
-            outputs[i] = sigmoid(outputs[i]);
+            logits[i] += bias_output[i];
         }
 
-        return { hidden_activations, outputs };
+        // Apply softmax to output layer logits
+        std::vector<float> outputs = softmax(logits);
+
+        return {hidden_activations, outputs};
     }
 
     // Backpropagation (to be implemented)
