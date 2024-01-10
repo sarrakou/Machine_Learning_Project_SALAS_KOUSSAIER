@@ -116,5 +116,15 @@ public:
             bias_hidden[i] += learning_rate * hidden_errors[i] * sigmoid_derivative(hidden_activations[i]);
         }
     }
+
+    // Mean Squared Error Loss
+    float mse_loss(const std::vector<float>& outputs, const std::vector<float>& targets) {
+        float loss = 0.0f;
+        for (size_t i = 0; i < outputs.size(); i++) {
+            float error = targets[i] - outputs[i];
+            loss += error * error;
+        }
+        return loss / outputs.size();
+    }
 };
 
