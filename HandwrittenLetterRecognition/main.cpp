@@ -120,7 +120,7 @@ void trainAndEvaluateMLP() {
 
 // Función para entrenar y evaluar el modelo lineal
 void trainAndEvaluateLinearModel() {
-    // Datos de entrenamiento y prueba para el modelo lineal
+    //// Datos de entrenamiento y prueba para el modelo lineal
     std::vector<std::vector<float>> trainInputs;  // Tus datos de entrenamiento para el modelo lineal
     std::vector<std::vector<float>> trainTargets;  // Tus etiquetas de entrenamiento para el modelo lineal
     std::vector<std::vector<float>> testInputs;   // Tus datos de prueba para el modelo lineal
@@ -171,6 +171,7 @@ void trainAndEvaluateLinearModel() {
     float accuracyLinear = static_cast<float>(correctPredictionsLinear) / static_cast<float>(testInputs.size());
     std::cout << "Accuracy (Linear Model): " << accuracyLinear * 100.0f << "%" << std::endl;
 }
+
 
 int main() {    
 
