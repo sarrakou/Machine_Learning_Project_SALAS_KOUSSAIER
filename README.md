@@ -1,6 +1,6 @@
 # Machine_Learning_Project_SALAS_KOUSSAIER
 Application permettant de différencier des lettres manuscrites.
-Pour la première version: seulement 3 lettres ('a', 'c', et 'j')
+- Pour la première version: **seulement 3 lettres ('a', 'c', et 'j')**
 
 
 ## Process et avancement avec étapes : 
