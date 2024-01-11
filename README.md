@@ -49,7 +49,7 @@ Application permettant de différencier des lettres manuscrites.
 ### 4 - Évaluation du modèle :
 
 * **PMC :**
-  - Après la formation, on a évaluer la performance de notre modèle sur l'ensemble de test pour voir dans quelle mesure il se généralise à de nouvelles données invisibles.
+  - Après l'apprentissage, on a évaluer la performance de notre modèle sur l'ensemble de test pour voir dans quelle mesure il se généralise à de nouvelles données invisibles.
   On a utilisé **"accuracy"** comme indicateur de performance.
 
 ### 5 - Itération et amélioration :
