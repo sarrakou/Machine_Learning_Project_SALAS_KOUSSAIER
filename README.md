@@ -65,10 +65,10 @@ Application permettant de différencier des lettres manuscrites.
 ## Résultats obtenus et commentaires : 
 
 * **PMC:**
-  * Au début, dans la première iteration, on a eu une accuracy de **100%**, ce qui nous a surpris. On a constaté que c'etait parce que les données de test faisait partie de celle de l'entrainement.
-  * Dans une deuxieme iteration, on a eu une accuracy de **46%**, on a donc ajouter plus de données et changer la fonction de loss et activation pour la couche de sortie.
-  * Dans une troisième version, on a eu une accuracy de **66%**, on a donc diminuer le "learning rate".
-    → Resultat : **Accuracy = 80%**
+  * Au départ, notre première itération a donné une Accuracy surprenante de **100%**. Nous avons rapidement compris que cela était dû à l'inclusion des données de test dans notre ensemble de données d'entraînement.
+  * Dans la deuxième itération, la précision est tombée à **46%**. Pour remédier à cela, nous avons élargi notre base de données et modifié la fonction de loss et la fonction d'activation pour la couche de sortie.
+  * Dans la troisième itération, la précision s'est améliorée pour atteindre **66%**. Nous avons ensuite réduit le taux d'apprentissage, ce qui a finalement conduit à une amélioration significative des performances de notre modèle, atteignant une précision de **80%**.
+    - → Resultat : **Accuracy = 80%**
   
   *Ce résultat n'est pas final, on a encore des modifications et ajustement à ajouter dans les prochaines version*
 
