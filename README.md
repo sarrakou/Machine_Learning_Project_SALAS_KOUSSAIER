@@ -17,7 +17,7 @@ Pour la première version: seulement 3 lettres ('a', 'c', et 'j')
 ### 2 - Développement du modèle: 
 
 * **PMC :**
- - *Propriétés :*
+  - *Propriétés :*
     ```
     learning rate = 0.005
     input size = 400x400 (vecteur d'entrée = nombre de pixels)
