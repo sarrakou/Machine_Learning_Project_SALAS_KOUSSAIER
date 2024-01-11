@@ -56,13 +56,13 @@ Application permettant de différencier des lettres manuscrites.
     * Calculer la 'loss' et 'accuracy' de chaque epoch en utilisant cross-entropy pour la loss.
    
 * **Modèle linéaire :**
-  - On a :
-   * initialisé les poids et le biais du modèle linéaire avec de petites valeurs aléatoires.
-   * Utilisé la méthode descente de gradient pour minimiser la fonction de perte et ajuster les poids et le biais du modèle. Le processus est répété sur plusieurs itérations pour améliorer progressivement la capacité du   modèle à faire des prédictions précises:
-        - Prédiction: calcule la sortie du modèle linéaire pour une entrée donnée.
-        - Calcul de l'Erreur : L'erreur est calculée en comparant la prédiction avec l'étiquette réelle.
-        - Mise à Jour des Poids et du Biais : Chaque poids est ajusté proportionnellement au gradient de la fonction de perte par rapport à ce poids.
-   * Calculer la perte a chaque époque comme une mesure de la qualité de l'apprentissage.
+  - On a :    
+     * initialisé les poids et le biais du modèle linéaire avec de petites valeurs aléatoires.
+     * Utilisé la méthode descente de gradient pour minimiser la fonction de perte et ajuster les poids et le biais du modèle. Le processus est répété sur plusieurs itérations pour améliorer progressivement la capacité du   modèle à faire des prédictions précises:
+          - Prédiction: calcule la sortie du modèle linéaire pour une entrée donnée.
+          - Calcul de l'Erreur : L'erreur est calculée en comparant la prédiction avec l'étiquette réelle.
+          - Mise à Jour des Poids et du Biais : Chaque poids est ajusté proportionnellement au gradient de la fonction de perte par rapport à ce poids.
+     * Calculer la perte a chaque époque comme une mesure de la qualité de l'apprentissage.
 
 ### 4 - Évaluation du modèle :
 
