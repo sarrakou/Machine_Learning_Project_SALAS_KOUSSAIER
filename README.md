@@ -32,6 +32,15 @@ Application permettant de différencier des lettres manuscrites.
     weights, biases = random
     ```
 
+* **Modèle linéaire :**
+  - *Propriétés :*
+    ```
+    inputSize = 400 * 400;
+    learningRate = 0.01;
+    epochs = 50;
+    weights, biases = random
+    ```
+
 ### 3 - Entraînement du modèle :
 
 * **PMC :**
@@ -45,12 +54,26 @@ Application permettant de différencier des lettres manuscrites.
         Calculer les erreurs et mettre à jour les 'weights' de chaque couche.
     
     * Calculer la 'loss' et 'accuracy' de chaque epoch en utilisant cross-entropy pour la loss.
+   
+* **Modèle linéaire :**
+  - On a :
+   * initialisé les poids et le biais du modèle linéaire avec de petites valeurs aléatoires.
+   * Utilisé la méthode descente de gradient pour minimiser la fonction de perte et ajuster les poids et le biais du modèle. Le processus est répété sur plusieurs itérations pour améliorer progressivement la capacité du   modèle à faire des prédictions précises:
+        - Prédiction: calcule la sortie du modèle linéaire pour une entrée donnée.
+        - Calcul de l'Erreur : L'erreur est calculée en comparant la prédiction avec l'étiquette réelle.
+        - Mise à Jour des Poids et du Biais : Chaque poids est ajusté proportionnellement au gradient de la fonction de perte par rapport à ce poids.
+   * Calculer la perte a chaque époque comme une mesure de la qualité de l'apprentissage.
 
 ### 4 - Évaluation du modèle :
 
 * **PMC :**
   - Après l'apprentissage, on a évaluer la performance de notre modèle sur l'ensemble de test pour voir dans quelle mesure il se généralise à de nouvelles données invisibles.
   On a utilisé **"accuracy"** comme indicateur de performance.
+
+* **Modèle linéaire :**
+  - Après l'entraînement du modèle, il est évalué sur un ensemble de données de test distinct. Une prédiction est effectuée pour chaque entrée de l'ensemble de données de test en utilisant la fonction predict.
+  - La prédiction est comparée aux étiquettes réelles pour calculer la précision du modèle. Si la prédiction est proche de l'étiquette réelle, elle est considérée comme correcte.
+  - La précision est calculée en divisant le nombre total de prédictions correctes par le nombre total d'entrées de test.
 
 ### 5 - Itération et amélioration :
 
