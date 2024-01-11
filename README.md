@@ -31,7 +31,7 @@ Pour la première version: seulement 3 lettres ('a', 'c', et 'j')
 ### 3 - Entraînement du modèle :
 
 * **PMC :**
-  On a :
+  - On a :
     * diviser notre ensemble de données en ensembles d'apprentissage et de test.
     * Entraîner notre modèle sur l’ensemble d’entraînement : 
       * *Forward propagation :*
@@ -45,7 +45,7 @@ Pour la première version: seulement 3 lettres ('a', 'c', et 'j')
 ### 4 - Évaluation du modèle :
 
 * **PMC :**
-  Après la formation, on a évaluer la performance de notre modèle sur l'ensemble de test pour voir dans quelle mesure il se généralise à de nouvelles données invisibles.
+  - Après la formation, on a évaluer la performance de notre modèle sur l'ensemble de test pour voir dans quelle mesure il se généralise à de nouvelles données invisibles.
   On a utilisé **"accuracy"** comme indicateur de performance.
 
 ### 5 - Itération et amélioration :
