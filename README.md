@@ -1,7 +1,11 @@
 # Machine_Learning_Project_SALAS_KOUSSAIER
 Application permettant de différencier des lettres manuscrites.
 - Pour la première version: **seulement 3 lettres ('a', 'c', et 'j')**
+  
+## Auteurs
 
+- Adriana Salas [@AdrianaS13](https://github.com/AdrianaS13)
+- Sarra Koussaier [@sarrakou](https://github.com/sarrakou)
 
 ## Process et avancement avec étapes : 
 ### 1 - Collection et préparation des données :
