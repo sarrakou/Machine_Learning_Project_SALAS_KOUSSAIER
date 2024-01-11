@@ -99,7 +99,7 @@ public:
         return {hidden_activations, outputs};
     }
 
-    // Backpropagation (to be implemented)
+    // Backpropagation 
     void train(const std::vector<float>& inputs, const std::vector<float>& targets) {
 
         // Capture both outputs and hidden_activations from the forward pass

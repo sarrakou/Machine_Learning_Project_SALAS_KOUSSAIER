@@ -10,7 +10,10 @@
 namespace fs = std::filesystem;
 
 void preprocessImage(const std::string& imagePath, std::vector<float>& outputVector) {
+    // Load the image in grayscale
     cv::Mat img = cv::imread(imagePath, cv::IMREAD_GRAYSCALE);
+
+    // Normalize the pixel values (0-1)
     img.convertTo(img, CV_32F, 1.0 / 255);
 
     // Resize image if necessary
@@ -66,7 +69,7 @@ int main() {
     int input_size = 400 * 400; // Size of each input vector
     int hidden_size = 128;      // Number of neurons in the hidden layer
     int output_size = 3;        // Number of output neurons (3 classes)
-    float learning_rate = 0.01; // Learning rate
+    float learning_rate = 0.005; // Learning rate
 
     // Create the MLP
     MLPAlgo mlp(input_size, hidden_size, output_size, learning_rate);
