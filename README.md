@@ -77,7 +77,7 @@ Application permettant de différencier des lettres manuscrites.
 
 ### 5 - Itération et amélioration :
 
-* **PMC :**
+* **PMC et Modèle linéaire :**
   - On a créer d'avantage des données.
   - On a ajuster le processus de formation (diminuer le learning rate, changer la loss function et la fonction d'activation pour la couche de sorite)
 
@@ -92,6 +92,11 @@ Application permettant de différencier des lettres manuscrites.
   * Dans la deuxième itération, la précision est tombée à **46%**. Pour remédier à cela, nous avons élargi notre base de données et modifié la fonction de loss et la fonction d'activation pour la couche de sortie.
   * Dans la troisième itération, la précision s'est améliorée pour atteindre **66%**. Nous avons ensuite réduit le taux d'apprentissage, ce qui a finalement conduit à une amélioration significative des performances de notre modèle, atteignant une précision de **80%**.
     - → Resultat : **Accuracy = 80%**
+    - 
+* **Modèle linéaire:**
+  * Au début, tout comme le modèle pmc, nous avions une précision de **100 %** lorsque nous utilisions des données de test dans notre ensemble de données d'entraînement.
+  * Nous avons ensuite obtenu une précision de **33,3 %**. Nous avons essayé d'utiliser la fonction softmax, mais nous avons continué à obtenir le même résultat.
+  * Le modèle linéaire n'est pas un modèle très précis pour notre problème car nous devons prendre en compte plus de variables pour obtenir des résultats plus précis, ce que le modèle linéaire limite beaucoup.
   
   *Ce résultat n'est pas final, on a encore des modifications et ajustement à ajouter dans les prochaines version*
 
