@@ -96,7 +96,11 @@ public:
         // Apply softmax to output layer logits
         std::vector<float> outputs = softmax(logits);
 
+<<<<<<< HEAD
         return { hidden_activations, outputs };
+=======
+        return {hidden_activations, outputs};
+>>>>>>> 7f49477e40234c684f748012502da9db854cf93d
     }
 
     // Backpropagation 
@@ -135,6 +139,31 @@ public:
             bias_hidden[i] += learning_rate * hidden_errors[i] * sigmoid_derivative(hidden_activations[i]);
         }
     }
+<<<<<<< HEAD
+=======
+
+    // Cross-Entropy Loss Function
+    float cross_entropy_loss(const std::vector<float>& outputs, const std::vector<float>& targets) {
+        float loss = 0.0f;
+        for (size_t i = 0; i < outputs.size(); i++) {
+            // To avoid log(0) which is undefined, add a small value epsilon
+            float epsilon = 1e-6;
+            loss -= targets[i] * log(outputs[i] + epsilon);
+        }
+        return loss;
+    }
+
+    // Mean Squared Error Loss
+    float mse_loss(const std::vector<float>& outputs, const std::vector<float>& targets) {
+        float loss = 0.0f;
+        for (size_t i = 0; i < outputs.size(); i++) {
+            float error = targets[i] - outputs[i];
+            loss += error * error;
+        }
+        return loss / outputs.size();
+    }
+};
+>>>>>>> 7f49477e40234c684f748012502da9db854cf93d
 
     // Cross-Entropy Loss Function
     float cross_entropy_loss(const std::vector<float>& outputs, const std::vector<float>& targets) {
