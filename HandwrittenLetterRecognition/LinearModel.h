@@ -36,7 +36,7 @@ public:
 
 
     LinearModel(int input_size, float lr) : learning_rate(lr) {
-        // Inicialización de pesos con valores aleatorios
+        // Weight initialization with random values
         weights.resize(input_size);
         std::random_device rd;
         std::mt19937 gen(rd());
@@ -44,7 +44,7 @@ public:
         for (float& weight : weights) {
             weight = dis(gen);
         }
-        // Inicialización de sesgo con valor aleatorio
+        // Bias initialization with a random value
         bias = dis(gen);
     }
 

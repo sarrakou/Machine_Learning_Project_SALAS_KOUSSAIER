@@ -179,14 +179,14 @@ void trainAndEvaluateLinearModel() {
 
     float accuracyLinear = static_cast<float>(correctPredictionsLinear) / static_cast<float>(testInputs.size());
     std::cout << "Accuracy (Linear Model): " << accuracyLinear * 100.0f << "%" << std::endl;*/
+    // Training and testing data for the linear model
+    std::vector<std::vector<float>> trainInputs;  // Your training data for the linear model
+    std::vector<std::vector<float>> trainTargets;  // Your training labels for the linear model
+    std::vector<std::vector<float>> testInputs;   // Your testing data for the linear model
+    std::vector<std::vector<float>> testTargets;  // Your testing labels for the linear model
 
-     //// Datos de entrenamiento y prueba para el modelo lineal
-    std::vector<std::vector<float>> trainInputs;  // Tus datos de entrenamiento para el modelo lineal
-    std::vector<std::vector<float>> trainTargets;  // Tus etiquetas de entrenamiento para el modelo lineal
-    std::vector<std::vector<float>> testInputs;   // Tus datos de prueba para el modelo lineal
-    std::vector<std::vector<float>> testTargets;  // Tus etiquetas de prueba para el modelo lineal
+    // Call the function to load the data
 
-    // Llamada a la función para cargar los datos
     loadData(trainInputs, trainTargets);
     loadTestData(testInputs, testTargets);
 
@@ -202,26 +202,27 @@ void trainAndEvaluateLinearModel() {
             flatTrainTargets.push_back(targetVector[0]);
         }
         else {
-            std::cerr << "Error: Vector de destino vacío encontrado." << std::endl;
-            // Otra opción: establecer un valor predeterminado o realizar alguna acción de manejo de errores
+            std::cerr << "Error: Empty target vector encountered." << std::endl;
+            // Another option: set a default value or perform some error handling action
+
         }
     }
 
-    // Entrenamiento del modelo lineal
+    // Training the linear model
     linearModel.train(trainInputs, flatTrainTargets, epochs);
 
-    // Evaluación del modelo lineal
+    // Evaluating the linear model
     int correctPredictionsLinear = 0;
 
     for (size_t i = 0; i < testInputs.size(); ++i) {
-        // Obtener la predicción del modelo lineal
+        // Get the prediction from the linear model
         float linearPrediction = linearModel.predict(testInputs[i]);
 
-        // Asumiendo que las etiquetas son valores continuos, si es mayor que 0.5, predice la clase positiva
+        // Assuming labels are continuous values, if greater than 0.5, predict positive class
         int predictedClassLinear = (linearPrediction > 0.5) ? 1 : 0;
 
-        // Determine la clase real
-        int actualClass = static_cast<int>(flatTrainTargets[i]);  // Suponiendo que las etiquetas son valores enteros
+        // Determine the actual class
+        int actualClass = static_cast<int>(flatTrainTargets[i]);  // Assuming labels are integer values
 
         if (predictedClassLinear == actualClass) {
             correctPredictionsLinear++;
@@ -239,7 +240,7 @@ void trainAndEvaluateLinearModel() {
 
 int main() {    
 
-    // Menú para elegir el modelo
+    // Menu to choose the model
     std::cout << "Choose a model to train and evaluate:" << std::endl;
     std::cout << "1. MLP" << std::endl;
     std::cout << "2. Linear Model" << std::endl;
