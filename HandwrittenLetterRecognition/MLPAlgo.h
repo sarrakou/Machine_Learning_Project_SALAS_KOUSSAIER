@@ -23,6 +23,23 @@ private:
         return x * (1.0f - x);
     }
 
+    // Softmax Activation Function
+    std::vector<float> softmax(const std::vector<float>& logits) {
+        std::vector<float> exp_logits(logits.size());
+        float sum_exp_logits = 0.0f;
+
+        for (size_t i = 0; i < logits.size(); i++) {
+            exp_logits[i] = exp(logits[i]);
+            sum_exp_logits += exp_logits[i];
+        }
+
+        for (size_t i = 0; i < logits.size(); i++) {
+            exp_logits[i] /= sum_exp_logits;
+        }
+
+        return exp_logits;
+    }
+
     // Initialize weights and biases with random values
     void initialize() {
         std::random_device rd;
@@ -67,20 +84,22 @@ public:
             hidden_activations[i] = sigmoid(hidden_activations[i]);
         }
 
-        // Calculate output layer activations
-        std::vector<float> outputs(output_nodes, 0.0f);
+        // Calculate output layer logits
+        std::vector<float> logits(output_nodes, 0.0f);
         for (int i = 0; i < output_nodes; ++i) {
             for (int j = 0; j < hidden_nodes; ++j) {
-                outputs[i] += hidden_activations[j] * weights_output[i][j];
+                logits[i] += hidden_activations[j] * weights_output[i][j];
             }
-            outputs[i] += bias_output[i];
-            outputs[i] = sigmoid(outputs[i]);
+            logits[i] += bias_output[i];
         }
+
+        // Apply softmax to output layer logits
+        std::vector<float> outputs = softmax(logits);
 
         return { hidden_activations, outputs };
     }
 
-    // Backpropagation (to be implemented)
+    // Backpropagation 
     void train(const std::vector<float>& inputs, const std::vector<float>& targets) {
 
         // Capture both outputs and hidden_activations from the forward pass
@@ -116,5 +135,25 @@ public:
             bias_hidden[i] += learning_rate * hidden_errors[i] * sigmoid_derivative(hidden_activations[i]);
         }
     }
-};
 
+    // Cross-Entropy Loss Function
+    float cross_entropy_loss(const std::vector<float>& outputs, const std::vector<float>& targets) {
+        float loss = 0.0f;
+        for (size_t i = 0; i < outputs.size(); i++) {
+            // To avoid log(0) which is undefined, add a small value epsilon
+            float epsilon = 1e-6;
+            loss -= targets[i] * log(outputs[i] + epsilon);
+        }
+        return loss;
+    }
+
+    // Mean Squared Error Loss
+    float mse_loss(const std::vector<float>& outputs, const std::vector<float>& targets) {
+        float loss = 0.0f;
+        for (size_t i = 0; i < outputs.size(); i++) {
+            float error = targets[i] - outputs[i];
+            loss += error * error;
+        }
+        return loss / outputs.size();
+    }
+};
