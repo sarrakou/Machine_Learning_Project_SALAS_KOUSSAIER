@@ -3,8 +3,8 @@
 #include <cmath>
 #include <random>
 #include <iostream>
-#include "MLPAlgo.h" // Include your MLP class header
-#include "LinearModel.h"
+#include "MLPAlgo.h" // MLP class header
+#include "LinearModel.h" // LinearModel class header
 #include <filesystem> // Requires C++17
 
 
@@ -17,7 +17,7 @@ void preprocessImage(const std::string& imagePath, std::vector<float>& outputVec
     // Normalize the pixel values (0-1)
     img.convertTo(img, CV_32F, 1.0 / 255);
 
-    // Resize image if necessary
+    // Resize image 
    // cv::resize(img, img, cv::Size(new_width, new_height));
 
     // Flatten the image to a 1D array
@@ -25,7 +25,7 @@ void preprocessImage(const std::string& imagePath, std::vector<float>& outputVec
 }
 
 void loadData(std::vector<std::vector<float>>& inputs, std::vector<std::vector<float>>& targets) {
-    // Assuming images are organized in directories named 'a', 'j', 'c'
+    // Images are organized in directories named 'a', 'j', 'c'
     std::string baseDir = "D:/Adriana/ESGI/Cursos/Machine Learning/proyecto/Machine_Learning_Project_SALAS_KOUSSAIER/TrainingDataset"; // the path to your images
     std::vector<std::vector<float>> labels = { {1, 0, 0}, {0, 1, 0}, {0, 0, 1} }; // One-hot encoding for 'a', 'j', 'c'
     std::vector<std::string> folders = { "a", "j", "c" };
@@ -43,8 +43,8 @@ void loadData(std::vector<std::vector<float>>& inputs, std::vector<std::vector<f
 
 
 void loadTestData(std::vector<std::vector<float>>& testInputs, std::vector<std::vector<float>>& testTargets) {
-    // Implement loading of your test data similar to how you did with the training data
-    // Assuming test images are organized in directories named 'a', 'j', 'c'
+    // Implement loading of test data similar to how we did with the training data
+    //Test images are organized in directories named 'a', 'j', 'c'
     std::string baseDir = "D:/Adriana/ESGI/Cursos/Machine Learning/proyecto/Machine_Learning_Project_SALAS_KOUSSAIER/TestingDataset"; // Update with the path to your test images
     std::vector<std::vector<float>> labels = { {1, 0, 0}, {0, 1, 0}, {0, 0, 1} }; // One-hot encoding for 'a', 'j', 'c'
     std::vector<std::string> folders = { "a", "j", "c" };
@@ -64,7 +64,7 @@ void trainAndEvaluateMLP() {
     std::vector<std::vector<float>> inputs;  // To store input data
     std::vector<std::vector<float>> targets; // To store target labels
 
-    loadData(inputs, targets); // Load your data
+    loadData(inputs, targets); // Load data
 
     // Parameters for the MLP
     int input_size = 400 * 400; // Size of each input vector
@@ -109,7 +109,7 @@ void trainAndEvaluateMLP() {
 
     std::cout << "Training completed." << std::endl;
 
-    // After training, you can test the model on your test data
+    // After training, test the model on test data
     // and evaluate its performance 
 
     std::vector<std::vector<float>> testInputs;
@@ -143,7 +143,7 @@ void trainAndEvaluateLinearModel() {
     std::vector<std::vector<float>> testInputs;
     std::vector<std::vector<float>> testTargets;
 
-    // Llamada a la función para cargar los datos
+    // Llamada a la funciÃ³n para cargar los datos
     loadData(trainInputs, trainTargets);
     loadTestData(testInputs, testTargets);
 
@@ -156,11 +156,11 @@ void trainAndEvaluateLinearModel() {
     // Entrenamiento del modelo lineal
     linearModel.train(trainInputs, trainTargets, epochs);
 
-    // Evaluación del modelo lineal
+    // EvaluaciÃ³n del modelo lineal
     int correctPredictionsLinear = 0;
 
     for (size_t i = 0; i < testInputs.size(); ++i) {
-        // Obtener la predicción del modelo lineal
+        // Obtener la predicciÃ³n del modelo lineal
         std::vector<float> linearPrediction = linearModel.predict(testInputs[i]);
 
         // Aplicar Softmax a las logits para obtener probabilidades
@@ -180,12 +180,12 @@ void trainAndEvaluateLinearModel() {
     float accuracyLinear = static_cast<float>(correctPredictionsLinear) / static_cast<float>(testInputs.size());
     std::cout << "Accuracy (Linear Model): " << accuracyLinear * 100.0f << "%" << std::endl;*/
     // Training and testing data for the linear model
-    std::vector<std::vector<float>> trainInputs;  // Your training data for the linear model
-    std::vector<std::vector<float>> trainTargets;  // Your training labels for the linear model
-    std::vector<std::vector<float>> testInputs;   // Your testing data for the linear model
-    std::vector<std::vector<float>> testTargets;  // Your testing labels for the linear model
+    std::vector<std::vector<float>> trainInputs;  //  training data for the linear model
+    std::vector<std::vector<float>> trainTargets;  //  training labels for the linear model
+    std::vector<std::vector<float>> testInputs;   //  testing data for the linear model
+    std::vector<std::vector<float>> testTargets;  //  testing labels for the linear model
 
-    // Call the function to load the data
+    // the function to load the data
 
     loadData(trainInputs, trainTargets);
     loadTestData(testInputs, testTargets);
@@ -203,7 +203,6 @@ void trainAndEvaluateLinearModel() {
         }
         else {
             std::cerr << "Error: Empty target vector encountered." << std::endl;
-            // Another option: set a default value or perform some error handling action
 
         }
     }
@@ -218,11 +217,11 @@ void trainAndEvaluateLinearModel() {
         // Get the prediction from the linear model
         float linearPrediction = linearModel.predict(testInputs[i]);
 
-        // Assuming labels are continuous values, if greater than 0.5, predict positive class
+        // labels are continuous values, if greater than 0.5, predict positive class
         int predictedClassLinear = (linearPrediction > 0.5) ? 1 : 0;
 
         // Determine the actual class
-        int actualClass = static_cast<int>(flatTrainTargets[i]);  // Assuming labels are integer values
+        int actualClass = static_cast<int>(flatTrainTargets[i]);  // labels are integer values
 
         if (predictedClassLinear == actualClass) {
             correctPredictionsLinear++;
