@@ -40,13 +40,13 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -70,19 +70,38 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+<<<<<<< HEAD
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>C:\Users\sarra\OneDrive - Reseau-GES\Documents\json-develop\json-develop\include\nlohmann;$(IncludePath)</IncludePath>
+    <ExternalIncludePath>C:\Users\sarra\OneDrive - Reseau-GES\Documents\json-develop\json-develop\include\nlohmann;$(ExternalIncludePath)</ExternalIncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>C:\Users\sarra\OneDrive - Reseau-GES\Documents\json-develop\json-develop\include\nlohmann;$(IncludePath)</IncludePath>
+    <ExternalIncludePath>C:\Users\sarra\OneDrive - Reseau-GES\Documents\json-develop\json-develop\include\nlohmann;$(ExternalIncludePath)</ExternalIncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\Users\sarra\OneDrive - Reseau-GES\Documents\json-develop\json-develop\include\nlohmann;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>C:\Users\sarra\OneDrive - Reseau-GES\Documents\json-develop\json-develop\include\nlohmann;$(IncludePath)</IncludePath>
+=======
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>D:\Opencv\opencv\build\include;$(IncludePath)</IncludePath>
+>>>>>>> main
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MYLIBRARY_EXPORTS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\sarra\OneDrive - Reseau-GES\Documents\json-develop\json-develop\include;C:\Users\sarra\OneDrive - Reseau-GES\Documents\opencv\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Users\sarra\OneDrive - Reseau-GES\Documents\opencv\build\x64\vc16\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opencv_world480.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -91,29 +110,41 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MYLIBRARY_EXPORTS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\sarra\OneDrive - Reseau-GES\Documents\opencv\build\include;C:\Users\sarra\OneDrive - Reseau-GES\Documents\json-develop\json-develop\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Users\sarra\OneDrive - Reseau-GES\Documents\opencv\build\x64\vc16\lib;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opencv_world480.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MYLIBRARY_EXPORTS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+<<<<<<< HEAD
+      <AdditionalIncludeDirectories>C:\Users\sarra\OneDrive - Reseau-GES\Documents\json-develop\json-develop\include;C:\Users\sarra\OneDrive - Reseau-GES\Documents\opencv\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+=======
       <LanguageStandard>stdcpp17</LanguageStandard>
+>>>>>>> main
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+<<<<<<< HEAD
+      <AdditionalLibraryDirectories>C:\Users\sarra\OneDrive - Reseau-GES\Documents\opencv\build\x64\vc16\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opencv_world480.lib;%(AdditionalDependencies)</AdditionalDependencies>
+=======
       <AdditionalLibraryDirectories>D:\Opencv\opencv\build\x64\vc16\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opencv_world490d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+>>>>>>> main
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -122,9 +153,9 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MYLIBRARY_EXPORTS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\sarra\OneDrive - Reseau-GES\Documents\opencv\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sarra\OneDrive - Reseau-GES\Documents\opencv\build\include;C:\Users\sarra\OneDrive - Reseau-GES\Documents\json-develop\json-develop\include</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -133,17 +164,29 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\sarra\OneDrive - Reseau-GES\Documents\opencv\build\x64\vc16\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opencv_world480.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opencv_world480.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="LinearModel.cpp" />
+<<<<<<< HEAD
+    <ClCompile Include="Library.cpp" />
+=======
     <ClCompile Include="main.cpp" />
+>>>>>>> main
     <ClCompile Include="MLPAlgo.cpp" />
+    <ClCompile Include="RBFNetwork.cpp" />
+    <ClCompile Include="SimpleSVM.cpp" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
+    <ClInclude Include="Library.h" />
+=======
+>>>>>>> main
     <ClInclude Include="LinearModel.h" />
     <ClInclude Include="MLPAlgo.h" />
+    <ClInclude Include="RBFNetwork.h" />
+    <ClInclude Include="SimpleSVM.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

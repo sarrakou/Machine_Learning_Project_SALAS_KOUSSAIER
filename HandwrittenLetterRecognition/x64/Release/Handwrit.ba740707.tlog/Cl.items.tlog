@@ -1,2 +1,5 @@
-C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\main.cpp;C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\x64\Release\main.obj
+C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\LinearModel.cpp;C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\x64\Release\LinearModel.obj
+C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\Library.cpp;C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\x64\Release\Library.obj
 C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\MLPAlgo.cpp;C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\x64\Release\MLPAlgo.obj
+C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\RBFNetwork.cpp;C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\x64\Release\RBFNetwork.obj
+C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\SimpleSVM.cpp;C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\x64\Release\SimpleSVM.obj

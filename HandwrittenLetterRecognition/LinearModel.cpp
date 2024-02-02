@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+#include "LinearModel.h"
+
+=======
 /*#include "LinearModel.h"
 
 float LinearModel::sigmoid(float x) const {
@@ -128,3 +132,4 @@ void LinearModel::train(const std::vector<std::vector<float>>& input_data, const
         std::cout << "Epoch " << (epoch + 1) << ", Loss: " << epoch_loss << std::endl;
     }
 }
+>>>>>>> main
