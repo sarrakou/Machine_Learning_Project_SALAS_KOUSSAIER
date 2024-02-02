@@ -24,15 +24,12 @@
     <ClCompile Include="LinearModel.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="SimpleSVM.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="RBFNetwork.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-=======
->>>>>>> main
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MLPAlgo.h">
@@ -41,7 +38,6 @@
     <ClInclude Include="LinearModel.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="SimpleSVM.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -51,7 +47,5 @@
     <ClInclude Include="RBFNetwork.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-=======
->>>>>>> main
   </ItemGroup>
 </Project>
