@@ -27,6 +27,9 @@
     <ClCompile Include="SimpleSVM.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="RBFNetwork.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MLPAlgo.h">
@@ -40,6 +43,9 @@
     </ClInclude>
     <ClInclude Include="Library.h">
       <Filter>Fichiers sources</Filter>
+    </ClInclude>
+    <ClInclude Include="RBFNetwork.h">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

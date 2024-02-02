@@ -7,10 +7,16 @@
 #include "MLPAlgo.h" 
 #include "LinearModel.h"
 #include "SimpleSVM.h"
+#include "RBFNetwork.h"
+#include <opencv2/core.hpp>
+#include <opencv2/ml.hpp>
 #include <filesystem> // Requires C++17
+#include <nlohmann/json.hpp>
 
 
 namespace fs = std::filesystem;
+using namespace cv;
+using namespace cv::ml;
 
 void preprocessImage(const std::string& imagePath, std::vector<float>& outputVector) {
     // Load the image in grayscale
@@ -62,20 +68,20 @@ void loadTestData(std::vector<std::vector<float>>& testInputs, std::vector<std::
     }
 }
 
+// Parameters for the MLP
+int input_size = 400 * 400; // Size of each input vector
+int hidden_size = 128;      // Number of neurons in the hidden layer
+int output_size = 3;        // Number of output neurons (3 classes)
+float learning_rate = 0.005; // Learning rate
+
+// Create the MLP
+MLPAlgo mlp(input_size, hidden_size, output_size, learning_rate);
+
 void trainAndEvaluateMLP() {
     std::vector<std::vector<float>> inputs;  // To store input data
     std::vector<std::vector<float>> targets; // To store target labels
 
     loadData(inputs, targets); // Load data
-
-    // Parameters for the MLP
-    int input_size = 400 * 400; // Size of each input vector
-    int hidden_size = 128;      // Number of neurons in the hidden layer
-    int output_size = 3;        // Number of output neurons (3 classes)
-    float learning_rate = 0.005; // Learning rate
-
-    // Create the MLP
-    MLPAlgo mlp(input_size, hidden_size, output_size, learning_rate);
 
     int epochs = 50; // Number of epochs for training
 
@@ -139,6 +145,13 @@ void trainAndEvaluateMLP() {
 
 }
 
+
+int inputSize = 400 * 400;  // Number of input features
+int numClasses = 3;         // Number of classes (e.g., 'a', 'j', 'c')
+float learningRate = 0.005; // Learning rate
+
+LinearModel linearModel(inputSize, numClasses, learningRate);
+
 // Función para entrenar y evaluar el modelo lineal
 void trainAndEvaluateLinearModel() {
     //// Datos de entrenamiento y prueba para el modelo lineal
@@ -152,13 +165,6 @@ void trainAndEvaluateLinearModel() {
     loadTestData(testInputs, testTargets);
 
     int epochs = 50;
-
-    int inputSize = 400 * 400;  // Number of input features
-    int numClasses = 3;         // Number of classes (e.g., 'a', 'j', 'c')
-    float learningRate = 0.005; // Learning rate
-
-    LinearModel linearModel(inputSize, numClasses, learningRate);
-
     // Entrenamiento del modelo lineal
     linearModel.train(trainInputs, trainTargets, epochs);
 
@@ -199,21 +205,71 @@ void prepareDataForClass(const std::vector<std::vector<float>>& inputs,
 }
 
 
-int predictClass(const std::vector<SimpleSVM>& svms, const std::vector<float>& input) {
-    float maxScore = std::numeric_limits<float>::lowest();
-    int predictedClass = -1;
+extern "C" {
+    __declspec(dllexport) int predictClass(const std::vector<SimpleSVM>& svms, const std::vector<float>& input) {
+        float maxScore = std::numeric_limits<float>::lowest();
+        int predictedClass = -1;
 
-    for (size_t i = 0; i < svms.size(); ++i) {
-        float score = svms[i].decisionFunction(input);  // Assume decisionFunction returns the distance from the hyperplane
-        if (score > maxScore) {
-            maxScore = score;
-            predictedClass = i;  // Class index with the highest score
+        for (size_t i = 0; i < svms.size(); ++i) {
+            float score = svms[i].decisionFunction(input);  // Assume decisionFunction returns the distance from the hyperplane
+            if (score > maxScore) {
+                maxScore = score;
+                predictedClass = i;  // Class index with the highest score
+            }
         }
-    }
 
-    return predictedClass;
+        return predictedClass;
+    }
 }
 
+/* // Function to save all SVM models to a JSON file
+void saveModelsToJson(const std::vector<SimpleSVM>& svms, const std::string& filename) {
+    nlohmann::json jsonModels;
+
+    for (const auto& svm : svms) {
+        nlohmann::json jsonModel = svm.serializeToJson();
+        jsonModels.push_back(jsonModel);
+    }
+
+    std::ofstream file(filename);
+
+    if (file.is_open()) {
+        file << jsonModels.dump(4);  // Pretty-print with indentation
+        file.close();
+        std::cout << "Models saved to " << filename << std::endl;
+    }
+    else {
+        std::cerr << "Unable to open file for saving models: " << filename << std::endl;
+    }
+}
+
+// Function to load all SVM models from a JSON file
+bool loadModelsFromJson(std::vector<SimpleSVM>& svms, const std::string& filename) {
+    std::ifstream file(filename);
+
+    if (file.is_open()) {
+        nlohmann::json jsonModels;
+        file >> jsonModels;
+
+        svms.clear();  // Clear existing models
+
+        for (const auto& jsonModel : jsonModels) {
+            SimpleSVM svm;
+            svm.deserializeFromJson(jsonModel);
+            svms.push_back(svm);
+        }
+
+        file.close();
+        std::cout << "Models loaded from " << filename << std::endl;
+        return true;
+    }
+    else {
+        std::cerr << "Unable to open file for loading models: " << filename << std::endl;
+        return false;
+    }
+} */
+
+static std::vector<SimpleSVM> svms; // One SVM for each class
 
 void trainAndEvaluateSVM() {
     std::vector<std::vector<float>> inputs;  // To store input data
@@ -227,7 +283,9 @@ void trainAndEvaluateSVM() {
     int numClasses = 3; // Assuming 3 classes for 'a', 'j', and 'c'
     float lambda = 0.1; // Regularization parameter
 
-    std::vector<SimpleSVM> svms(numClasses, SimpleSVM(inputSize, learningRate, lambda)); // One SVM for each class
+    svms.clear(); // Clear existing models if re-training
+    svms.resize(numClasses, SimpleSVM(inputSize, learningRate, lambda));
+
 
     // Train SVM for each class in One-vs-Rest manner
     for (int classIdx = 0; classIdx < numClasses; ++classIdx) {
@@ -281,7 +339,93 @@ void trainAndEvaluateSVM() {
 
     float accuracy = static_cast<float>(correctPredictions) / static_cast<float>(testInputs.size());
     std::cout << "Accuracy (SVM): " << accuracy * 100.0f << "%" << std::endl;
+
 }
+
+RBFNetwork rbfNetwork;
+
+void trainAndEvaluateRBFNetwork() {
+    std::vector<std::vector<float>> inputs, targets;
+    std::vector<std::vector<float>> testInputs, testTargets;
+
+    loadData(inputs, targets);
+
+    loadTestData(testInputs, testTargets);
+
+    // Number of centers and beta 
+    int numCenters = 15;
+    float beta = 0.1;
+
+    // Create an instance of RBFNetwork
+    rbfNetwork.setup(inputs, targets, numCenters, beta);
+
+    rbfNetwork.train(inputs, targets);
+
+    float accuracy = rbfNetwork.test(testInputs, testTargets);
+
+    std::cout << "Accuracy: " << accuracy * 100 << "%" << std::endl;
+}
+
+extern "C" {
+    __declspec(dllexport) int PredictValueUsingSVM(const float* inputArray, int arrayLength) {
+        std::vector<float> inputVector(inputArray, inputArray + arrayLength);
+        trainAndEvaluateSVM();
+
+        float maxScore = std::numeric_limits<float>::lowest();
+        int predictedClass = -1; // Default to an invalid class
+
+        for (int i = 0; i < svms.size(); ++i) {
+            float score = svms[i].decisionFunction(inputVector);
+            if (score > maxScore) {
+                maxScore = score;
+                predictedClass = i;
+            }
+        }
+
+        return predictedClass;
+    }
+
+    __declspec(dllexport) int PredictValueUsingLinearModel(const float* inputArray, int arrayLength) {
+        std::vector<float> inputVector(inputArray, inputArray + arrayLength);
+
+        // Ensure the linearModel has been initialized and trained
+        std::vector<float> predictionScores = linearModel.predict(inputVector);
+
+        // Identify the class with the highest score
+        int predictedClass = std::distance(predictionScores.begin(), std::max_element(predictionScores.begin(), predictionScores.end()));
+
+
+        return predictedClass;
+    }
+
+    __declspec(dllexport) int PredictValueUsingMLP(const float* inputArray, int arrayLength) {
+        // Convert the input array to a vector<float>
+        std::vector<float> inputVector(inputArray, inputArray + arrayLength);
+
+        // Use the MLP model to predict the output for the given input
+        auto predictionScores = mlp.forward(inputVector).second;
+
+        // Find the index of the maximum score in the prediction scores, which corresponds to the predicted class
+        int predictedClass = std::distance(predictionScores.begin(), std::max_element(predictionScores.begin(), predictionScores.end()));
+
+        return predictedClass;
+    }
+
+    __declspec(dllexport) int PredictValueUsingRBF(const float* inputArray, int arrayLength) {
+        // Convert the input array to a vector<float>
+        std::vector<float> inputVector(inputArray, inputArray + arrayLength);
+
+        // Use the RBF network to predict the output for the given input
+        auto predictionScores = rbfNetwork.predict(inputVector);
+
+        // Find the index of the maximum score in the prediction scores, which corresponds to the predicted class
+        int predictedClass = std::distance(predictionScores.begin(), std::max_element(predictionScores.begin(), predictionScores.end()));
+
+        return predictedClass;
+    }
+
+}
+
 
 void testSimpleLinearSVM() {
     // Simple linear dataset
@@ -326,6 +470,8 @@ void testSimpleLinearSVM() {
     float accuracy = static_cast<float>(correctPredictions) / X.size();
     std::cout << "Simple Linear SVM Test Accuracy: " << accuracy * 100.0f << "%" << std::endl;
 }
+
+
 
 void testSimple3DSVM() {
     // Simple 3D dataset
@@ -372,9 +518,9 @@ void testSimple3DSVM() {
 }
 
 int main() {
-
+    trainAndEvaluateSVM();
     // Menú para elegir el modelo
-    std::cout << "Choose a model to train and evaluate:" << std::endl;
+    /* std::cout << "Choose a model to train and evaluate:" << std::endl;
     std::cout << "1. MLP" << std::endl;
     std::cout << "2. Linear Model" << std::endl;
     std::cout << "3. SVM" << std::endl;
@@ -403,7 +549,7 @@ int main() {
     default:
         std::cout << "Invalid choice." << std::endl;
         break;
-    }
+    } */
 
-    return 0;
+    return 0; 
 }
