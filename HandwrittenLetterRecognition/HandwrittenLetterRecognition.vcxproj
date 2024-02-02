@@ -70,7 +70,6 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-<<<<<<< HEAD
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>C:\Users\sarra\OneDrive - Reseau-GES\Documents\json-develop\json-develop\include\nlohmann;$(IncludePath)</IncludePath>
     <ExternalIncludePath>C:\Users\sarra\OneDrive - Reseau-GES\Documents\json-develop\json-develop\include\nlohmann;$(ExternalIncludePath)</ExternalIncludePath>
@@ -84,10 +83,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>C:\Users\sarra\OneDrive - Reseau-GES\Documents\json-develop\json-develop\include\nlohmann;$(IncludePath)</IncludePath>
-=======
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>D:\Opencv\opencv\build\include;$(IncludePath)</IncludePath>
->>>>>>> main
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -129,22 +124,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>MYLIBRARY_EXPORTS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-<<<<<<< HEAD
       <AdditionalIncludeDirectories>C:\Users\sarra\OneDrive - Reseau-GES\Documents\json-develop\json-develop\include;C:\Users\sarra\OneDrive - Reseau-GES\Documents\opencv\build\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-=======
-      <LanguageStandard>stdcpp17</LanguageStandard>
->>>>>>> main
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-<<<<<<< HEAD
       <AdditionalLibraryDirectories>C:\Users\sarra\OneDrive - Reseau-GES\Documents\opencv\build\x64\vc16\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opencv_world480.lib;%(AdditionalDependencies)</AdditionalDependencies>
-=======
-      <AdditionalLibraryDirectories>D:\Opencv\opencv\build\x64\vc16\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opencv_world490d.lib;%(AdditionalDependencies)</AdditionalDependencies>
->>>>>>> main
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -169,20 +155,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="LinearModel.cpp" />
-<<<<<<< HEAD
     <ClCompile Include="Library.cpp" />
-=======
-    <ClCompile Include="main.cpp" />
->>>>>>> main
     <ClCompile Include="MLPAlgo.cpp" />
     <ClCompile Include="RBFNetwork.cpp" />
     <ClCompile Include="SimpleSVM.cpp" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <ClInclude Include="Library.h" />
-=======
->>>>>>> main
     <ClInclude Include="LinearModel.h" />
     <ClInclude Include="MLPAlgo.h" />
     <ClInclude Include="RBFNetwork.h" />
