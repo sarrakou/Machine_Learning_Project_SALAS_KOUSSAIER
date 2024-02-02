@@ -96,7 +96,7 @@ public:
         // Apply softmax to output layer logits
         std::vector<float> outputs = softmax(logits);
 
-        return {hidden_activations, outputs};
+        return { hidden_activations, outputs };
     }
 
     // Backpropagation 
@@ -157,4 +157,3 @@ public:
         return loss / outputs.size();
     }
 };
-
