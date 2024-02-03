@@ -354,7 +354,7 @@ void trainAndEvaluateRBFNetwork() {
 
     // Number of centers and beta 
     int numCenters = 15;
-    float beta = 0.1;
+    float beta = 0.01;
 
     // Create an instance of RBFNetwork
     rbfNetwork.setup(inputs, targets, numCenters, beta);
@@ -368,6 +368,7 @@ void trainAndEvaluateRBFNetwork() {
 
 extern "C" {
     __declspec(dllexport) int PredictValueUsingSVM(const float* inputArray, int arrayLength) {
+        // Convert the input array to a vector<float>
         std::vector<float> inputVector(inputArray, inputArray + arrayLength);
         trainAndEvaluateSVM();
 
@@ -399,7 +400,7 @@ extern "C" {
     }
 
     __declspec(dllexport) int PredictValueUsingMLP(const float* inputArray, int arrayLength) {
-        // Convert the input array to a vector<float>
+        
         std::vector<float> inputVector(inputArray, inputArray + arrayLength);
 
         // Use the MLP model to predict the output for the given input
@@ -412,11 +413,10 @@ extern "C" {
     }
 
     __declspec(dllexport) int PredictValueUsingRBF(const float* inputArray, int arrayLength) {
-        // Convert the input array to a vector<float>
         std::vector<float> inputVector(inputArray, inputArray + arrayLength);
 
         // Use the RBF network to predict the output for the given input
-        auto predictionScores = rbfNetwork.predict(inputVector);
+        std::vector<float> predictionScores = rbfNetwork.predict(inputVector);
 
         // Find the index of the maximum score in the prediction scores, which corresponds to the predicted class
         int predictedClass = std::distance(predictionScores.begin(), std::max_element(predictionScores.begin(), predictionScores.end()));

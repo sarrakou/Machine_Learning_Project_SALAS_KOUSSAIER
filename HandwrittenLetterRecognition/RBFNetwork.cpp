@@ -2,32 +2,68 @@
 
 
 void RBFNetwork::initializeCentersKMeans(const std::vector<std::vector<float>>& trainingInputs, int numCenters) {
-    centers.clear();
+//    centers.clear();
     if (trainingInputs.empty()) {
         std::cerr << "Error: Training data is empty." << std::endl;
         return;
     }
 
-    std::vector<std::vector<float>> shuffledInputs = trainingInputs;
+    /*//std::vector<std::vector<float>> shuffledInputs = trainingInputs;
+
+    //std::random_device rd;
+    //std::mt19937 g(rd());
+
+    //// Distribution
+    //for (size_t i = shuffledInputs.size() - 1; i > 0; --i) {
+    //    std::uniform_int_distribution<size_t> distribution(0, i);
+    //    size_t j = distribution(g);
+
+    //    if (i != j) {
+    //        std::swap(shuffledInputs[i], shuffledInputs[j]);
+    //    }
+    //}
+
+    ////Assign centers
+    //centers.assign(shuffledInputs.begin(), shuffledInputs.begin() + numCenters);
+    //
+    //K-means
+    //runKMeans(trainingInputs, numCenters);*/
 
     std::random_device rd;
-    std::mt19937 g(rd());
+    std::mt19937 generator(rd());
+    std::uniform_int_distribution<size_t> distribution(0, trainingInputs.size() - 1);
+    size_t firstCentroidIndex = distribution(generator);
+    centers.push_back(trainingInputs[firstCentroidIndex]);
 
-    // Distribution
-    for (size_t i = shuffledInputs.size() - 1; i > 0; --i) {
-        std::uniform_int_distribution<size_t> distribution(0, i);
-        size_t j = distribution(g);
+    // Calculates the squared distances from each point to the nearest existing centroid
+    std::vector<float> minDistances(trainingInputs.size(), std::numeric_limits<float>::max());
 
-        if (i != j) {
-            std::swap(shuffledInputs[i], shuffledInputs[j]);
+    for (int i = 1; i < numCenters; ++i) {
+        for (size_t j = 0; j < trainingInputs.size(); ++j) {
+            float distance = calculateDistanceSquared(trainingInputs[j], centers.back());
+            minDistances[j] = std::min(minDistances[j], distance);
         }
+
+        // Selects the next centroid with a probability proportional to the distances
+        std::discrete_distribution<size_t> probDistribution(minDistances.begin(), minDistances.end());
+        size_t nextCentroidIndex = probDistribution(generator);
+        centers.push_back(trainingInputs[nextCentroidIndex]);
+    }
+}
+
+float RBFNetwork::calculateDistanceSquared(const std::vector<float>& v1, const std::vector<float>& v2) {
+    if (v1.size() != v2.size()) {
+        std::cerr << "Error: Vectors must have the same dimension for distance calculation." << std::endl;
+        return -1.0;
     }
 
-    //Assing centers 
-    centers.assign(shuffledInputs.begin(), shuffledInputs.begin() + numCenters);
+    float distanceSquared = 0.0;
 
-    //K-means
-    runKMeans(trainingInputs, numCenters);
+    for (size_t i = 0; i < v1.size(); ++i) {
+        distanceSquared += (v1[i] - v2[i]) * (v1[i] - v2[i]);
+    }
+
+    return distanceSquared;
 }
 
 void RBFNetwork::runKMeans(const std::vector<std::vector<float>>& trainingInputs, int numCenters) {
