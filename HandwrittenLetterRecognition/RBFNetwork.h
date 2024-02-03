@@ -23,6 +23,7 @@ public:
     }
 
     void initializeCentersKMeans(const std::vector<std::vector<float>>& trainingInputs, int numCenters);
+    float calculateDistanceSquared(const std::vector<float>& v1, const std::vector<float>& v2);
 
     void setup(const std::vector<std::vector<float>>& trainingInputs, const std::vector<std::vector<float>>& targets, int numCenters, float newBeta) {
         this->beta = newBeta;
