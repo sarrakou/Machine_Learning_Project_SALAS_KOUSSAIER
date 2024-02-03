@@ -342,11 +342,12 @@ void trainAndEvaluateSVM() {
 
 }
 
+
+std::vector<std::vector<float>> inputs, targets;
+std::vector<std::vector<float>> testInputs, testTargets;
 RBFNetwork rbfNetwork;
 
 void trainAndEvaluateRBFNetwork() {
-    std::vector<std::vector<float>> inputs, targets;
-    std::vector<std::vector<float>> testInputs, testTargets;
 
     loadData(inputs, targets);
 
@@ -416,10 +417,14 @@ extern "C" {
         std::vector<float> inputVector(inputArray, inputArray + arrayLength);
 
         // Use the RBF network to predict the output for the given input
-        std::vector<float> predictionScores = rbfNetwork.predict(inputVector);
+        //std::vector<float> predictionScores = rbfNetwork.predict(inputVector);
 
         // Find the index of the maximum score in the prediction scores, which corresponds to the predicted class
-        int predictedClass = std::distance(predictionScores.begin(), std::max_element(predictionScores.begin(), predictionScores.end()));
+        //int predictedClass = std::distance(predictionScores.begin(), std::max_element(predictionScores.begin(), predictionScores.end()));
+        std::vector<float> output = rbfNetwork.processInput(inputVector, targets);  // Asegúrate de proporcionar el formato correcto
+
+        // Identifica la clase predicha (índice del valor máximo)
+        int predictedClass = std::distance(output.begin(), std::max_element(output.begin(), output.end()));
 
         return predictedClass;
     }
@@ -519,6 +524,9 @@ void testSimple3DSVM() {
 
 int main() {
     trainAndEvaluateSVM();
+    trainAndEvaluateRBFNetwork();
+    trainAndEvaluateMLP();
+    trainAndEvaluateLinearModel();
     // Menú para elegir el modelo
     /* std::cout << "Choose a model to train and evaluate:" << std::endl;
     std::cout << "1. MLP" << std::endl;

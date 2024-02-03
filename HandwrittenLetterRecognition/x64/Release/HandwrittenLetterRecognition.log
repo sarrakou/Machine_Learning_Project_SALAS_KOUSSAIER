@@ -41,18 +41,18 @@ C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecogn
 C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\Library.cpp(281,24): warning C4305: 'initialisation' : troncation de 'double' à 'float'
 C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\Library.cpp(284,18): warning C4305: 'initialisation' : troncation de 'double' à 'float'
 C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\Library.cpp(333,25): warning C4244: 'initialisation' : conversion de '__int64' en 'int', perte possible de données
-C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\Library.cpp(357,16): warning C4305: 'initialisation' : troncation de 'double' à 'float'
-C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\Library.cpp(396,28): warning C4244: 'initialisation' : conversion de '__int64' en 'int', perte possible de données
-C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\Library.cpp(410,28): warning C4244: 'initialisation' : conversion de '__int64' en 'int', perte possible de données
-C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\Library.cpp(422,28): warning C4244: 'initialisation' : conversion de '__int64' en 'int', perte possible de données
-C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\Library.cpp(441,24): warning C4305: 'initialisation' : troncation de 'double' à 'float'
-C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\Library.cpp(442,18): warning C4305: 'initialisation' : troncation de 'double' à 'float'
-C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\Library.cpp(487,24): warning C4305: 'initialisation' : troncation de 'double' à 'float'
-C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\Library.cpp(488,18): warning C4305: 'initialisation' : troncation de 'double' à 'float'
+C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\Library.cpp(358,16): warning C4305: 'initialisation' : troncation de 'double' à 'float'
+C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\Library.cpp(397,28): warning C4244: 'initialisation' : conversion de '__int64' en 'int', perte possible de données
+C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\Library.cpp(411,28): warning C4244: 'initialisation' : conversion de '__int64' en 'int', perte possible de données
+C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\Library.cpp(427,28): warning C4244: 'initialisation' : conversion de '__int64' en 'int', perte possible de données
+C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\Library.cpp(446,24): warning C4305: 'initialisation' : troncation de 'double' à 'float'
+C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\Library.cpp(447,18): warning C4305: 'initialisation' : troncation de 'double' à 'float'
+C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\Library.cpp(492,24): warning C4305: 'initialisation' : troncation de 'double' à 'float'
+C:\Users\sarra\source\repos\HandwrittenLetterRecognition\HandwrittenLetterRecognition\Library.cpp(493,18): warning C4305: 'initialisation' : troncation de 'double' à 'float'
      Création de la bibliothèque C:\Users\sarra\source\repos\HandwrittenLetterRecognition\x64\Release\HandwrittenLetterRecognition.lib et de l'objet C:\Users\sarra\source\repos\HandwrittenLetterRecognition\x64\Release\HandwrittenLetterRecognition.exp
   Génération de code en cours
-  2 of 910 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+  36 of 918 functions ( 3.9%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    16 functions had inline decision re-evaluated but remain unchanged
   Fin de la génération du code
   HandwrittenLetterRecognition.vcxproj -> C:\Users\sarra\source\repos\HandwrittenLetterRecognition\x64\Release\HandwrittenLetterRecognition.dll
