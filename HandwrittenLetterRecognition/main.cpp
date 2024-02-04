@@ -5,6 +5,7 @@
 #include <iostream>
 #include "MLPAlgo.h" // Include your MLP class header
 #include "LinearModel.h"
+#include "RBFNetwork.h"
 #include <filesystem> // Requires C++17
 
 
@@ -26,7 +27,7 @@ void preprocessImage(const std::string& imagePath, std::vector<float>& outputVec
 
 void loadData(std::vector<std::vector<float>>& inputs, std::vector<std::vector<float>>& targets) {
     // Assuming images are organized in directories named 'a', 'j', 'c'
-    std::string baseDir = "D:/Adriana/ESGI/Cursos/Machine Learning/proyecto/Machine_Learning_Project_SALAS_KOUSSAIER/TrainingDataset"; // the path to your images
+    std::string baseDir = "D:/Adriana/ESGI/Cursos/Machine_Learning/proyecto/Machine_Learning_Project_SALAS_KOUSSAIER/TrainingDataset"; // the path to images
     std::vector<std::vector<float>> labels = { {1, 0, 0}, {0, 1, 0}, {0, 0, 1} }; // One-hot encoding for 'a', 'j', 'c'
     std::vector<std::string> folders = { "a", "j", "c" };
 
@@ -43,9 +44,8 @@ void loadData(std::vector<std::vector<float>>& inputs, std::vector<std::vector<f
 
 
 void loadTestData(std::vector<std::vector<float>>& testInputs, std::vector<std::vector<float>>& testTargets) {
-    // Implement loading of your test data similar to how you did with the training data
     // Assuming test images are organized in directories named 'a', 'j', 'c'
-    std::string baseDir = "D:/Adriana/ESGI/Cursos/Machine Learning/proyecto/Machine_Learning_Project_SALAS_KOUSSAIER/TestingDataset"; // Update with the path to your test images
+    std::string baseDir = "D:/Adriana/ESGI/Cursos/Machine_Learning/proyecto/Machine_Learning_Project_SALAS_KOUSSAIER/TestingDataset"; // the path to test images
     std::vector<std::vector<float>> labels = { {1, 0, 0}, {0, 1, 0}, {0, 0, 1} }; // One-hot encoding for 'a', 'j', 'c'
     std::vector<std::string> folders = { "a", "j", "c" };
 
@@ -64,7 +64,7 @@ void trainAndEvaluateMLP() {
     std::vector<std::vector<float>> inputs;  // To store input data
     std::vector<std::vector<float>> targets; // To store target labels
 
-    loadData(inputs, targets); // Load your data
+    loadData(inputs, targets); // Load data
 
     // Parameters for the MLP
     int input_size = 400 * 400; // Size of each input vector
@@ -109,7 +109,7 @@ void trainAndEvaluateMLP() {
 
     std::cout << "Training completed." << std::endl;
 
-    // After training, you can test the model on your test data
+    // After training, test the model on your test data
     // and evaluate its performance 
 
     std::vector<std::vector<float>> testInputs;
@@ -137,55 +137,12 @@ void trainAndEvaluateMLP() {
 }
 
 void trainAndEvaluateLinearModel() {
-    /*// Datos de entrenamiento y prueba para el modelo lineal
-    std::vector<std::vector<float>> trainInputs;
-    std::vector<std::vector<float>> trainTargets;
-    std::vector<std::vector<float>> testInputs;
-    std::vector<std::vector<float>> testTargets;
-
-    // Llamada a la función para cargar los datos
-    loadData(trainInputs, trainTargets);
-    loadTestData(testInputs, testTargets);
-
-    int inputSize = 400 * 400;
-    float learningRate = 0.01;
-    int epochs = 50;
-
-    LinearModel linearModel(inputSize, learningRate);
-
-    // Entrenamiento del modelo lineal
-    linearModel.train(trainInputs, trainTargets, epochs);
-
-    // Evaluación del modelo lineal
-    int correctPredictionsLinear = 0;
-
-    for (size_t i = 0; i < testInputs.size(); ++i) {
-        // Obtener la predicción del modelo lineal
-        std::vector<float> linearPrediction = linearModel.predict(testInputs[i]);
-
-        // Aplicar Softmax a las logits para obtener probabilidades
-        std::vector<float> probabilities = linearModel.applySoftmax(linearPrediction);
-
-        // Encontrar la clase predicha (la de mayor probabilidad)
-        int predictedClassLinear = std::distance(probabilities.begin(), std::max_element(probabilities.begin(), probabilities.end()));
-
-        // Determinar la clase real
-        int actualClass = std::distance(testTargets[i].begin(), std::max_element(testTargets[i].begin(), testTargets[i].end()));
-
-        if (predictedClassLinear == actualClass) {
-            correctPredictionsLinear++;
-        }
-    }
-
-    float accuracyLinear = static_cast<float>(correctPredictionsLinear) / static_cast<float>(testInputs.size());
-    std::cout << "Accuracy (Linear Model): " << accuracyLinear * 100.0f << "%" << std::endl;*/
+    
     // Training and testing data for the linear model
-    std::vector<std::vector<float>> trainInputs;  // Your training data for the linear model
-    std::vector<std::vector<float>> trainTargets;  // Your training labels for the linear model
-    std::vector<std::vector<float>> testInputs;   // Your testing data for the linear model
-    std::vector<std::vector<float>> testTargets;  // Your testing labels for the linear model
-
-    // Call the function to load the data
+    std::vector<std::vector<float>> trainInputs;  //  training data for the linear model
+    std::vector<std::vector<float>> trainTargets;  //  training labels for the linear model
+    std::vector<std::vector<float>> testInputs;   //  testing data for the linear model
+    std::vector<std::vector<float>> testTargets;  //  testing labels for the linear model
 
     loadData(trainInputs, trainTargets);
     loadTestData(testInputs, testTargets);
@@ -203,11 +160,9 @@ void trainAndEvaluateLinearModel() {
         }
         else {
             std::cerr << "Error: Empty target vector encountered." << std::endl;
-            // Another option: set a default value or perform some error handling action
 
         }
     }
-
     // Training the linear model
     linearModel.train(trainInputs, flatTrainTargets, epochs);
 
@@ -222,7 +177,7 @@ void trainAndEvaluateLinearModel() {
         int predictedClassLinear = (linearPrediction > 0.5) ? 1 : 0;
 
         // Determine the actual class
-        int actualClass = static_cast<int>(flatTrainTargets[i]);  // Assuming labels are integer values
+        int actualClass = static_cast<int>(flatTrainTargets[i]); 
 
         if (predictedClassLinear == actualClass) {
             correctPredictionsLinear++;
@@ -234,16 +189,63 @@ void trainAndEvaluateLinearModel() {
 }
 
 
+void predictSingleImage(const std::string& imagePath, RBFNetwork& rbfNetwork, std::vector<std::vector<float>>& trainingTargets) {
+
+    // Vector to store the preprocessed image
+    std::vector<float> inputVector;
+
+    // Load and preprocess the image
+    preprocessImage(imagePath, inputVector);
+
+    std::vector<float> output = rbfNetwork.processInput(inputVector, trainingTargets);
+
+    // Identify the predicted class (index of the maximum value)
+    int predictedClass = std::distance(output.begin(), std::max_element(output.begin(), output.end()));
+
+    std::vector<char> classLetters = { 'a', 'j', 'c' };
+
+    std::cout << "The predicted letter is: " << classLetters[predictedClass] << std::endl;
+}
+
+void trainAndEvaluateRBFNetwork() {
+    std::vector<std::vector<float>> inputs, targets;
+    std::vector<std::vector<float>> testInputs, testTargets;
+
+    loadData(inputs, targets);
+
+    loadTestData(testInputs, testTargets);
+
+    // Number of centers and beta 
+    int numCenters = 15;
+    float beta = 0.01;
+
+    // Create an instance of RBFNetwork
+    RBFNetwork rbfNetwork(inputs, targets, numCenters, beta);
+
+    rbfNetwork.train(inputs, targets);
+
+    float accuracy = rbfNetwork.test(testInputs, testTargets);
+
+    std::cout << "Accuracy: " << accuracy * 100 << "%" << std::endl;
+
+    //////////////////////////////////////////////////////
+        
+
+    predictSingleImage("D:/Adriana/ESGI/Cursos/Machine_Learning/Machine_Learning_Project_SALAS_KOUSSAIER/TrainingDataset/c/24.png", rbfNetwork, targets);
 
 
 
+}
 
-int main() {    
+
+
+int main() {
 
     // Menu to choose the model
     std::cout << "Choose a model to train and evaluate:" << std::endl;
     std::cout << "1. MLP" << std::endl;
     std::cout << "2. Linear Model" << std::endl;
+    std::cout << "3. RBFNetwork" << std::endl;
 
     int choice;
     std::cin >> choice;
@@ -255,6 +257,9 @@ int main() {
 
     case 2:
         trainAndEvaluateLinearModel();
+        break;
+    case 3:
+        trainAndEvaluateRBFNetwork();
         break;
 
     default:
